@@ -29,7 +29,7 @@
 hpMp = 1; //max 10
 fireSpeed = 0; //max 10
 fireDamageMp = 1.0; //max 5.0
-speedMp = 3.0; //max 3.0
+speedMp = 1.0; //max 3.0
 
 bulFireSpeed = 0;
 bulBounce = true;
@@ -48,6 +48,8 @@ view_hborder[0] = view_wview[0] / 2;
 view_vborder[0] = view_hview[0] / 2;
 
 instance_create(x+24,y+24,objPlShooter);
+show_debug_overlay(true);
+display_reset(4, true);
 </string>
           </argument>
         </arguments>
@@ -70,8 +72,7 @@ instance_create(x+24,y+24,objPlShooter);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>bulFireSpeed = 0;
-firingCooldown = false;
+            <string>firingCooldown = false;
 </string>
           </argument>
         </arguments>
@@ -97,13 +98,16 @@ firingCooldown = false;
             <string>
 if(currentlyFiring &amp;&amp; !firingCooldown)
 {
-var bul;
+var bulS;
     switch(bulletTier)
     {
-        case 1: bul = instance_create(x+24+lengthdir_x(24,objPlShooter.image_angle +90),y+24+lengthdir_y(24,objPlShooter.image_angle +90),objBullTier1); break;
+        case 1: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier1); break;
+        case 2: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier2); break;
+        case 3: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier3); break;
+        case 4: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier4); break;
     }
     
-    bulFireSpeed = bul.fireSpeed
+    bulFireSpeed = bulS.fireSpeed
     alarm[0] = bulFireSpeed;
 }
 </string>

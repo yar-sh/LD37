@@ -28,10 +28,10 @@
             <string>damage = 1;
 fireSpeed = 30;
 
-var bul1 = instance_create(x,y,objBasicProj);
+var bul1 = instance_create(x,y,objProj1);
 bul1.direction = point_direction(x,y,mouse_x,mouse_y);
-bul1.image_angle = bul1.direction;
-bul1.speed = 6;
+bul1.image_angle = bul1.direction-90;
+bul1.speed = 4.5;
 bul1.damage = damage;
 
 </string>

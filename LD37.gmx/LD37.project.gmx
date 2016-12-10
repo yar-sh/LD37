@@ -32,6 +32,16 @@
       <sprite>sprites\sprCorner2BottomLeft</sprite>
       <sprite>sprites\sprCorner2BottomRight</sprite>
     </sprites>
+    <sprites name="projectiles">
+      <sprite>sprites\sprTier1Bul</sprite>
+      <sprite>sprites\sprTier3Bul</sprite>
+    </sprites>
+    <sprites name="enemies">
+      <sprite>sprites\sprEnemyBaseTier1</sprite>
+      <sprite>sprites\sprEnemyShooterTier1</sprite>
+      <sprite>sprites\sprEnemyBaseTier2</sprite>
+      <sprite>sprites\sprEnemyShooterTier2</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -40,7 +50,10 @@
     <object>objects\objSolid</object>
     <objects name="enemies">
       <object>objects\objEnemyBase</object>
-      <object>objects\objEnemyTier1</object>
+      <object>objects\objEnemyBaseTier1</object>
+      <object>objects\objEnemyShooterTier1</object>
+      <object>objects\objEnemyBaseTier2</object>
+      <object>objects\objEnemyShooterTier2</object>
     </objects>
     <object>objects\objPlShooter</object>
     <objects name="walls">
@@ -58,9 +71,12 @@
     </objects>
     <objects name="projectiles">
       <object>objects\objProjBase</object>
-      <object>objects\objBasicProj</object>
-      <object>objects\objBounceProj</object>
       <object>objects\objBullTier1</object>
+      <object>objects\objBullTier2</object>
+      <object>objects\objBullTier3</object>
+      <object>objects\objBullTier4</object>
+      <object>objects\objProj1</object>
+      <object>objects\objProj2</object>
     </objects>
     <object>objects\objElectroWall</object>
     <objects name="corners2">
@@ -68,6 +84,13 @@
       <object>objects\objCorners2TopRight</object>
       <object>objects\objCorners2BottomRight</object>
       <object>objects\objCorners2BottomLeft</object>
+    </objects>
+    <objects name="projectilesEn">
+      <object>objects\objEnProjBase</object>
+      <object>objects\objEnBullTier1</object>
+      <object>objects\objEnBullTier2</object>
+      <object>objects\objEnProj1</object>
+      <object>objects\objEnProj2</object>
     </objects>
   </objects>
   <rooms name="rooms">
