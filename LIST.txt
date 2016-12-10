@@ -1,0 +1,43 @@
+CHANGE OF CONCEPT
+You are fighting the boss from the start. Boss spawns minions. With every 3rd wave minions get stronger. On wave 15 all obstacles are removed and boss is the only thing left. 
+
+
+Upgrades:
+    Fire rate (max 10), default 0
+    Fire damage (max 10), default 1.0
+    Speed (max 5),default 1.0
+    Health (max 10), default 1
+
+Single-time Upgrades:
+    Bullets bounce
+    Rockets
+
+Projectiles:
+    Bullets:
+        Tier 1: 1 bullet, Fire damage 1, Fire rate 30
+        Tier 2: 2 bullets, Fire damage 3, Fire rate 28
+        Tier 3: 3 bullets, Fire damage 5, Fire rate 25
+        Tier 4: 5 bullets, Fire damage 10, Fire rate 21
+
+    Rockets:
+        Tier 1: 1 rocket, Radius 50, Fire damage 15, Fire rate 60
+        Tier 2: 1 rocket, Radius 100, Fire damage 25, Fire rate 50
+
+
+Enemies:
+    Tier 1: 2 hp, 1 bullet, Damage 5, Fire rate 25
+    Tier 2: 5 hp, 2 bullets, Damage 10, Fire rate 25
+    Tier 3: 10 hp, 3 bullets, Damage 15, Fire rate 30
+    Tier 4: 25 hp, 3 bouncing bullets, Damage 15, Fire rate 45
+
+
+
+TODO
+Magaz
+boss
+NEON
+tutorial
+waves
+hud
+sounds
+credits
