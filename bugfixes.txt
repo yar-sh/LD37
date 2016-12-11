@@ -1,0 +1,2 @@
+1.0.1
+objColorize did not reset colors when player died on waves

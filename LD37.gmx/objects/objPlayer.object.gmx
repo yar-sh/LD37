@@ -400,6 +400,13 @@ if(transToBegin)
     draw_sprite_ext(sprBlack,0,0,0,1536,1536,0,c_white,alphaT);
 if(transToBegin &amp;&amp; alphaT &gt;=0.99 &amp;&amp; room == main)
 {
+with(objColorize)
+{
+    color = 0;
+goodColor = make_colour_hsv(0,224,224);
+badColor = make_colour_hsv(127,224,224);
+
+}
     with(objBoss)
         instance_destroy();
     with(objBg)
