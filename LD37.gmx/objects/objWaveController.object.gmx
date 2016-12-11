@@ -236,7 +236,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(8)
         {
@@ -285,7 +284,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(16)
         {
@@ -333,7 +331,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(16)
         {
@@ -396,7 +393,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(4)
         {
@@ -458,7 +454,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(8)
         {
@@ -520,7 +515,6 @@ with(objTempCollision)
                 y = randy;
             }
         }
-        break;
         
         repeat(12)
         {
