@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>damage = 5;
+            <string>if(instance_exists(objPlayer))
+{
+damage = 3;
 fireSpeed = 25;
 
 var bul1 = instance_create(x,y,objEnProj1);
@@ -33,7 +35,7 @@ bul1.direction = point_direction(x,y,objPlayer.x,objPlayer.y);
 bul1.image_angle = bul1.direction-90;
 bul1.speed = 3.8;
 bul1.damage = damage;
-
+}
 </string>
           </argument>
         </arguments>

@@ -28,8 +28,8 @@
             <string>damage = 3;
 fireSpeed = 28;
 
-var bul1 = instance_create(x,y,objProj1);
-var bul2 = instance_create(x,y,objProj1);
+var bul1 = instance_create(x,y,objProj2);
+var bul2 = instance_create(x,y,objProj2);
 bul1.direction = point_direction(x,y,mouse_x,mouse_y)-4;
 bul2.direction = point_direction(x,y,mouse_x,mouse_y)+4;
 bul1.image_angle = bul1.direction-90;

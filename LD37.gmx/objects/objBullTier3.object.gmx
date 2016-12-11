@@ -29,7 +29,7 @@
 fireSpeed = 25;
 
 var bul1 = instance_create(x,y,objProj2);
-var bul2 = instance_create(x,y,objProj1);
+var bul2 = instance_create(x,y,objProj2);
 var bul3 = instance_create(x,y,objProj2);
 bul1.direction = point_direction(x,y,mouse_x,mouse_y)-6;
 bul2.direction = point_direction(x,y,mouse_x,mouse_y);

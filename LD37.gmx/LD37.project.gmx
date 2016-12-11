@@ -35,16 +35,36 @@
     <sprites name="projectiles">
       <sprite>sprites\sprTier1Bul</sprite>
       <sprite>sprites\sprTier3Bul</sprite>
+      <sprite>sprites\sprEnProj3</sprite>
     </sprites>
     <sprites name="enemies">
       <sprite>sprites\sprEnemyBaseTier1</sprite>
       <sprite>sprites\sprEnemyShooterTier1</sprite>
       <sprite>sprites\sprEnemyBaseTier2</sprite>
       <sprite>sprites\sprEnemyShooterTier2</sprite>
+      <sprite>sprites\sprEnemyBaseTier3</sprite>
+      <sprite>sprites\sprEnemyBaseTier4</sprite>
+      <sprite>sprites\sprEnemyShooterTier4</sprite>
     </sprites>
+    <sprite>sprites\sprBoss</sprite>
+    <sprite>sprites\sprEnemyIcon</sprite>
+    <sprite>sprites\sprMoneyIcon</sprite>
+    <sprite>sprites\sprHealthIcon</sprite>
+    <sprite>sprites\sprMoneyDrop</sprite>
+    <sprite>sprites\sprWhite</sprite>
+    <sprite>sprites\sprMagazTile</sprite>
+    <sprite>sprites\sprMagazWindow</sprite>
+    <sprite>sprites\sprBg</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgBlack</background>
+    <background>background\bgGrid</background>
+  </backgrounds>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\ftHUD</font>
+    <font>fonts\ftMagaz</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objSolid</object>
@@ -54,6 +74,9 @@
       <object>objects\objEnemyShooterTier1</object>
       <object>objects\objEnemyBaseTier2</object>
       <object>objects\objEnemyShooterTier2</object>
+      <object>objects\objEnemyBaseTier3</object>
+      <object>objects\objEnemyBaseTier4</object>
+      <object>objects\objEnemyShooterTier4</object>
     </objects>
     <object>objects\objPlShooter</object>
     <objects name="walls">
@@ -89,12 +112,25 @@
       <object>objects\objEnProjBase</object>
       <object>objects\objEnBullTier1</object>
       <object>objects\objEnBullTier2</object>
+      <object>objects\objEnBullTier3</object>
+      <object>objects\objEnBullTier4</object>
       <object>objects\objEnProj1</object>
       <object>objects\objEnProj2</object>
+      <object>objects\objEnProj3</object>
     </objects>
+    <object>objects\objBoss</object>
+    <object>objects\objColorize</object>
+    <object>objects\objWaveController</object>
+    <object>objects\objTempCollision</object>
+    <object>objects\objHUD</object>
+    <object>objects\objMoneyDrop</object>
+    <object>objects\objBigMoneyPack</object>
+    <object>objects\objMagaz</object>
+    <object>objects\objBg</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\main</room>
+    <room>rooms\room2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -3,8 +3,8 @@
   <spriteName>sprPlayer</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
-  <persistent>0</persistent>
+  <depth>-16</depth>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,31 +25,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp = 10;
-hpMp = 1; //max 10
-fireSpeed = 0; //max 10
-fireDamageMp = 1.0; //max 5.0
-speedMp = 1.0; //max 3.0
+            <string>maxhp = 15;
+hp = 15;
+
+
+fireSpeedUpgrade = 0; //max 10, each by 1.5
+speedUpgrade = 0; //max 5, each by 0.4
 
 bulFireSpeed = 0;
-bulBounce = true;
+bulBounceAmount = 0;
 bulletTier = 1;
-rocketTier = 0;
 
-
+enemyHealthMp = 1.0;
 
 currentlyFiring = false;
 firingCooldown = false;
 
+money = 0;
 friction = 0.25;
 
-view_object[0]=objPlayer;//set object to follow
-view_hborder[0] = view_wview[0] / 2;
-view_vborder[0] = view_hview[0] / 2;
 
-instance_create(x+24,y+24,objPlShooter);
-show_debug_overlay(true);
-display_reset(4, true);
+instance_create(x,y,objPlShooter);
+display_reset(0, true);
 </string>
           </argument>
         </arguments>
@@ -101,14 +98,18 @@ if(currentlyFiring &amp;&amp; !firingCooldown)
 var bulS;
     switch(bulletTier)
     {
-        case 1: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier1); break;
-        case 2: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier2); break;
-        case 3: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier3); break;
-        case 4: bulS = instance_create(x+24+lengthdir_x(8,objPlShooter.image_angle +90),y+24+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier4); break;
+        case 1: bulS = instance_create(x+lengthdir_x(8,objPlShooter.image_angle +90),y+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier1); break;
+        case 2: bulS = instance_create(x+lengthdir_x(8,objPlShooter.image_angle +90),y+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier2); break;
+        case 3: bulS = instance_create(x+lengthdir_x(8,objPlShooter.image_angle +90),y+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier3); break;
+        case 4: bulS = instance_create(x+lengthdir_x(8,objPlShooter.image_angle +90),y+lengthdir_y(8,objPlShooter.image_angle +90),objBullTier4); break;
     }
-    
-    bulFireSpeed = bulS.fireSpeed
+    bulFireSpeed = bulS.fireSpeed;
+    bulFireSpeed -= 1.5 * fireSpeedUpgrade;
     alarm[0] = bulFireSpeed;
+    
+    with(bulS)
+        instance_destroy();
+    
 }
 </string>
           </argument>
@@ -135,8 +136,8 @@ var bulS;
             <string>
 with(objPlShooter)
 {
-x = objPlayer.x + 24;
-y = objPlayer.y + 24;
+x = objPlayer.x;
+y = objPlayer.y;
 
 image_angle = point_direction(x,y, mouse_x, mouse_y)-90;
 }
@@ -162,23 +163,66 @@ image_angle = point_direction(x,y, mouse_x, mouse_y)-90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>friction = 0.25 *speedMp;
+            <string>if(hp &lt;= 0)
+{
+with(objPlShooter)
+    instance_destroy();
+    instance_destroy();
+}
+
+friction = 0.25 *(1+speedUpgrade*0.4);
+
 //controls
 if keyboard_check(ord('W'))
 {
-    vspeed = -4*speedMp;
+    vspeed = -4*(1+speedUpgrade*0.4);
 }
 if keyboard_check(ord('S'))
 {
-    vspeed = 4*speedMp;
+    vspeed = 4*(1+speedUpgrade*0.4);
 }
 if keyboard_check(ord('A'))
 {
-    hspeed = -4*speedMp;
+    hspeed = -4*(1+speedUpgrade*0.4);
 }
 if keyboard_check(ord('D'))
 {
-    hspeed = 4*speedMp;
+    hspeed = 4*(1+speedUpgrade*0.4);
+}
+
+
+if keyboard_check_pressed(ord('O'))
+{
+    maxhp =99999;
+    hp = maxhp;
+    money =99999;
+}
+
+if(keyboard_check_pressed(ord('P')))
+{
+    if(instance_exists(objWaveController) &amp;&amp; objWaveController.curWave &lt; 13)
+    {
+with(objEnemyBase)
+    instance_destroy();
+    
+with(objEnemyShooterTier1)
+    instance_destroy();
+with(objEnemyShooterTier2)
+    instance_destroy();
+with(objEnemyShooterTier4)
+    instance_destroy();
+    
+tempWave= objWaveController.curWave;
+with(objWaveController)
+instance_destroy();
+newC = instance_create(-48,-48,objWaveController);
+
+with(newC)
+{
+        objWaveController.curWave=other.tempWave+1;
+        objWaveController.skip = true;
+}
+    }
 }
 
 if(mouse_check_button(mb_left) &amp;&amp; !currentlyFiring &amp;&amp; !firingCooldown)
@@ -193,6 +237,9 @@ if(mouse_check_button_released(mb_left) &amp;&amp; !firingCooldown)
     firingCooldown = true;
     alarm[1] = bulFireSpeed;
 }
+
+
+//todo death
 </string>
           </argument>
         </arguments>
@@ -250,6 +297,32 @@ if(!place_free(x+hspeed, y+vspeed))
 {
     hspeed = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+view_object[0]=objPlayer;//set object to follow
+view_hborder[0] = view_wview[0] / 2;
+view_vborder[0] = view_hview[0] / 2;
 </string>
           </argument>
         </arguments>

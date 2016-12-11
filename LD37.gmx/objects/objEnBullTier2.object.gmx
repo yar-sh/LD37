@@ -25,11 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>damage = 10;
+            <string>if(instance_exists(objPlayer))
+{damage = 5;
 fireSpeed = 20;
 
-var bul1 = instance_create(x,y,objEnProj2);
-var bul2 = instance_create(x,y,objEnProj2);
+var bul1 = instance_create(x,y,objEnProj1);
+var bul2 = instance_create(x,y,objEnProj1);
+bul1.bounce = true;
+bul2.bounce = true;
 bul1.direction = point_direction(x,y,objPlayer.x,objPlayer.y)-2;
 bul2.direction = point_direction(x,y,objPlayer.x,objPlayer.y)+2;
 bul1.image_angle = bul1.direction-90;
@@ -38,7 +41,7 @@ bul1.speed = 4.5;
 bul2.speed = 4.5;
 bul1.damage = damage;
 bul2.damage = damage;
-
+}
 </string>
           </argument>
         </arguments>

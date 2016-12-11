@@ -3,7 +3,7 @@
   <spriteName>sprEnemyBaseTier2</spriteName>
   <solid>-1</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-3</depth>
   <persistent>0</persistent>
   <parentName>objEnemyBase</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,12 +25,43 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp =5;
-
+            <string>if(instance_exists(objPlayer))
+{
+hp =5* objPlayer.enemyHealthMp;
 currentlyFiring = false;
 
 shooter = instance_create(x,y,objEnemyShooterTier2);
+}
+else
+    instance_destroy();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+repeat(irandom_range(3,6))
+{
+    instance_create(random_range(x-10,x+10),random_range(y-10,y+10),objMoneyDrop);
+}
 </string>
           </argument>
         </arguments>
@@ -53,12 +84,16 @@ shooter = instance_create(x,y,objEnemyShooterTier2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if(instance_exists(objPlayer))
+{
 if(currentlyFiring)
 {
 bulS=instance_create(x+lengthdir_x(8,shooter.image_angle +90),y+lengthdir_y(8,shooter.image_angle +90),objEnBullTier2);
 
     alarm[0] = bulS.fireSpeed*3
+    with(bulS)
+        instance_destroy();
+}
 }
 </string>
           </argument>
@@ -115,12 +150,10 @@ if(hp &lt;= 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if(distance_to_object(objPlayer) &lt; 500)
+            <string>if(instance_exists(objPlayer))
 {
     mp_potential_step(objPlayer.x, objPlayer.y, 3, false)
     image_angle = point_direction(x,y, objPlayer.x, objPlayer.y)-90;
-}
 
 shooter.direction = point_direction(x,y, objPlayer.x, objPlayer.y);
 shooter.image_angle = point_direction(x,y, objPlayer.x, objPlayer.y)-90;
@@ -135,7 +168,7 @@ else if(distance_to_object(objPlayer) &lt; 500 &amp;&amp; !currentlyFiring)
 {
     alarm[0] = 1;
     currentlyFiring = true;
-}
+}}
 </string>
           </argument>
         </arguments>
