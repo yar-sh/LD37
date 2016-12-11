@@ -25,9 +25,27 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxhp = 15;
+            <string>if(room == menu)
+{
+    x=room_width/2;
+y=room_height/2;
+}
+maxhp = 15;
 hp = 15;
 
+
+
+
+Sname = part_system_create()
+particle1 = part_type_create();
+part_type_shape(particle1,pt_shape_square);
+part_type_size(particle1,0.15,0.25,-0.006,0);
+part_type_speed(particle1,0.75,1.25,0,0);
+part_type_direction(particle1,0,359,0,0);
+part_type_colour1(particle1,objColorize.badColor);
+part_type_blend(particle1,1);
+part_type_life(particle1,60,60);
+emitter1 = part_emitter_create(Sname);
 
 fireSpeedUpgrade = 0; //max 10, each by 1.5
 speedUpgrade = 0; //max 5, each by 0.4
@@ -47,6 +65,11 @@ friction = 0.25;
 
 instance_create(x,y,objPlShooter);
 display_reset(0, true);
+t =0;
+transToBegin=false;
+transToBoss = false;
+alphaT = 0;
+deathStarted = false;
 </string>
           </argument>
         </arguments>
@@ -163,37 +186,38 @@ image_angle = point_direction(x,y, mouse_x, mouse_y)-90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(hp &lt;= 0)
+            <string>
+
+friction = 0.25 *(1+speedUpgrade*0.2);
+
+if(!deathStarted)
 {
-with(objPlShooter)
-    instance_destroy();
-    instance_destroy();
-}
-
-friction = 0.25 *(1+speedUpgrade*0.4);
-
 //controls
 if keyboard_check(ord('W'))
 {
-    vspeed = -4*(1+speedUpgrade*0.4);
+    vspeed = -4*(1+speedUpgrade*0.2);
 }
 if keyboard_check(ord('S'))
 {
-    vspeed = 4*(1+speedUpgrade*0.4);
+    vspeed = 4*(1+speedUpgrade*0.2);
 }
 if keyboard_check(ord('A'))
 {
-    hspeed = -4*(1+speedUpgrade*0.4);
+    hspeed = -4*(1+speedUpgrade*0.2);
 }
 if keyboard_check(ord('D'))
 {
-    hspeed = 4*(1+speedUpgrade*0.4);
+    hspeed = 4*(1+speedUpgrade*0.2);
 }
 
+if keyboard_check_pressed(vk_f2)
+{
+    game_restart();
+}
 
 if keyboard_check_pressed(ord('O'))
 {
-    maxhp =99999;
+    maxhp =99999; 
     hp = maxhp;
     money =99999;
 }
@@ -219,7 +243,7 @@ newC = instance_create(-48,-48,objWaveController);
 
 with(newC)
 {
-        objWaveController.curWave=other.tempWave+1;
+        objWaveController.curWave=other.tempWave;
         objWaveController.skip = true;
 }
     }
@@ -238,8 +262,7 @@ if(mouse_check_button_released(mb_left) &amp;&amp; !firingCooldown)
     alarm[1] = bulFireSpeed;
 }
 
-
-//todo death
+}
 </string>
           </argument>
         </arguments>
@@ -323,6 +346,113 @@ if(!place_free(x+hspeed, y+vspeed))
 view_object[0]=objPlayer;//set object to follow
 view_hborder[0] = view_wview[0] / 2;
 view_vborder[0] = view_hview[0] / 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+draw_self();
+
+
+if(hp &lt;= 0)
+{
+if(!deathStarted)
+{
+deathStarted = true;
+    part_emitter_region(Sname,emitter1,x,x,y,y,ps_shape_ellipse,1);
+    part_emitter_burst(Sname,emitter1,particle1,150);
+    
+
+    if(room == main)
+    {
+        transToBegin = true;
+    }
+    else 
+    {
+        transToBoss = true;
+    }
+}
+    
+    
+if(transToBegin &amp;&amp; alphaT &lt; 1.0)
+    alphaT+=0.01;
+if(transToBegin)
+    draw_sprite_ext(sprBlack,0,0,0,1536,1536,0,c_white,alphaT);
+if(transToBegin &amp;&amp; alphaT &gt;=0.99 &amp;&amp; room == main)
+{
+    with(objBoss)
+        instance_destroy();
+    with(objBg)
+        instance_destroy();
+        
+    room_goto_previous();
+    
+    instance_destroy();
+}
+
+if(transToBoss &amp;&amp; alphaT &lt; 1.0)
+    alphaT+=0.01;
+}
+if(transToBoss)
+    draw_sprite_ext(sprBlack,0,0,0,1536,1536,0,c_white,alphaT);
+if(transToBoss &amp;&amp; alphaT &gt;=0.99)
+{
+transToBoss = false;
+    with(objBoss)
+        instance_destroy();
+    newB = instance_create(room_width/2, room_height/2, objBoss);
+    newB.freeze = false;
+    newB.obstaclesRemoved = true;
+    hp = maxhp;
+    with(objEnProjBase)
+    {
+        silent = true;
+        instance_destroy();
+        }
+    
+    
+    with(objEnemyBase)
+    {
+    silent = true;
+        instance_destroy();
+        }
+        
+    with(objEnemyShooterTier1)
+        instance_destroy();
+        
+    with(objEnemyShooterTier2)
+        instance_destroy();
+        
+    with(objEnemyShooterTier4)
+        instance_destroy();
+        
+transToBegin=false;
+transToBoss = false;
+alphaT = 0;
+deathStarted = false;
+        x = 768;
+        y=504;
+    room_restart();
+}
+    
 </string>
           </argument>
         </arguments>

@@ -38,13 +38,18 @@ Bouncing bullets x7
 Health regen
 
 
-Do today:
-
-
-
 Do tomorrow:
 Sound/Music
+    player bullet shoot, enemy bullet shoot, bullet hit player, bullet hit enemy, pickup money, pickup big money, new wave, any upgrade, boss hit, shake (for boss cutscenes),  menu accept 
+Cutscenes
+    transition to boss room, boss death, player death
 Tutorial/Main menu
+    explain controls, after hitting spacebar start game
+    Explain LD
+Player game over/death screeen including boss respawn ability
 Credits
-Final boss
-More particles
+    Explain LD
+    Me, Jukedeck
+
+Edits:
+Magaz: display key numbers near each item (1...5);

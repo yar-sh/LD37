@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>bounces = 0;
+            <string>silent = false;
+bounces = 0;
 bounce = false;
 tempSpeed = 0;
 Sname = part_system_create();
@@ -70,10 +71,11 @@ part_type_life(particle2,60,60);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>if(!silent)
+{
     part_emitter_region(Sname,emitter1,x,x,y,y,ps_shape_ellipse,1);
     part_emitter_burst(Sname,emitter1,particle2,6);
-    
+    }
 </string>
           </argument>
         </arguments>

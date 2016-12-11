@@ -28,6 +28,7 @@
             <string>
 goodColor = make_colour_hsv(0,224,224);
 badColor = make_colour_hsv(127,224,224);
+
 </string>
           </argument>
         </arguments>
@@ -52,6 +53,10 @@ badColor = make_colour_hsv(127,224,224);
             <kind>1</kind>
             <string>background_blend[0] = make_color_hsv(color_get_hue(goodColor),224,50);
 
+if(instance_exists(objMenu))
+{
+    objMenu.image_blend = badColor;
+}
 if(instance_exists(objPlayer))
 {
     objPlayer.image_blend = goodColor;
@@ -79,7 +84,10 @@ if(instance_exists(objProj2))
     objProj2.image_blend = goodColor;
 }
 
-
+if(instance_exists(objBossProj))
+{
+    objBossProj.image_blend = objColorize.badColor;
+}
 
 if(instance_exists(objEnemyBase))
 {

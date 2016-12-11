@@ -258,7 +258,8 @@ if(objPlayer.bulletTier &lt; 4)
 }
 else
     draw_text(view_xview[0] + 187,view_yview[0]+410, "Bullet#lvl 4##Max");
-    
+
+       
 if(objPlayer.speedUpgrade &lt; 5)
 {
     draw_text(view_xview[0] + 286,view_yview[0]+410, "Speed#lvl "+ string(objPlayer.speedUpgrade + 1));

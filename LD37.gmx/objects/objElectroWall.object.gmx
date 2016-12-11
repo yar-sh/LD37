@@ -48,7 +48,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.hp-= other.maxhp/90;
+            <string>
+other.hp-= other.maxhp/90;
 </string>
           </argument>
         </arguments>

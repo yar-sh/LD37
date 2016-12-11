@@ -33,6 +33,8 @@ draw_set_colour(objColorize.goodColor);
 draw_set_font(ftHUD);
 draw_set_halign(fa_left);
 
+if(room != room2)
+{
 draw_sprite_ext(sprEnemyIcon, 0, x+2,y+6, 1.0,1.0,0,objColorize.goodColor,1.0);
 draw_text(x+32,y+6,"Enemies left: " + string(instance_number(objEnemyBase)));
 
@@ -42,7 +44,25 @@ if(instance_exists(objPlayer))
     draw_text(x+32,y+38,"Money: " + string(objPlayer.money));
 else
     draw_text(x+32,y+38,"Money: 0");
+}
+else
+{
+if(instance_exists(objBossHitbox))
+{
+    healthPx = 200/10000 * objBossHitbox.hp;
     
+    draw_sprite_ext(sprEnemyIcon, 0, x+2,y+6, 1.0,1.0,0,objColorize.goodColor,1.0);
+
+     draw_set_colour(make_color_hsv(color_get_hue(objColorize.goodColor), 224, 127));
+        draw_rectangle(x+38, y+12, x+38 + healthPx/objBossHitbox.hp * 10000,y+32, false)
+        
+        
+        draw_set_colour(objColorize.goodColor);
+        draw_rectangle(x+38, y+12, x+38 + healthPx,y+32, false)
+    }
+}
+
+
 draw_sprite_ext(sprHealthIcon, 0, x+768-34,y+6, 1.0,1.0,0,objColorize.goodColor,1.0);
 if(instance_exists(objPlayer))
 {
@@ -52,9 +72,13 @@ if(instance_exists(objPlayer))
     draw_rectangle(x+768 -38, y+12, x+768 - 32 - healthPx/objPlayer.hp * objPlayer.maxhp,y+32, false)
     
     
+if(objPlayer.hp &gt;0)
+{
     draw_set_colour(objColorize.goodColor);
     draw_rectangle(x+768 -38, y+12, x+768 - 32 - healthPx,y+32, false)
+    }
 }
+
 </string>
           </argument>
         </arguments>

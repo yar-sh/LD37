@@ -61,6 +61,14 @@ skip = false;
 if(waveStarted &amp;&amp; !spawned)
 {
 spawned = true;
+with(objTempCollision)
+{
+    if(!always)
+    {
+       
+        solid = true;
+    }
+}
     //based on wave number spawn enemies and increase their diff
     switch(curWave)
     {
@@ -530,6 +538,17 @@ spawned = true;
         }
         break;
     }
+    
+    
+    
+with(objTempCollision)
+{
+    if(!always)
+    {
+        
+        solid = false;
+    }
+}
 }
 
 if(waveStarted)
@@ -591,7 +610,10 @@ skip = false;
         case 10: objPlayer.enemyHealthMp = 1.0; break; //begin tier 4
         case 11: objPlayer.enemyHealthMp = 1.5; break;
         case 12: objPlayer.enemyHealthMp = 2.0; break;
-        case 13: objPlayer.enemyHealthMp = 1.75; objBoss.freeze = false; instance_destroy(); break; //final boss
+        case 13: 
+        objPlayer.maxhp += 300;
+        objPlayer.hp = objPlayer.maxhp;
+        objPlayer.enemyHealthMp = 1.75; objBoss.freeze = false; instance_destroy(); break; //final boss
     }
     }
 }

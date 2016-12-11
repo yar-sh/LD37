@@ -55,6 +55,12 @@
     <sprite>sprites\sprMagazTile</sprite>
     <sprite>sprites\sprMagazWindow</sprite>
     <sprite>sprites\sprBg</sprite>
+    <sprite>sprites\sprBossHitbox</sprite>
+    <sprite>sprites\sprBossProj</sprite>
+    <sprite>sprites\sprRed</sprite>
+    <sprite>sprites\sprMenu</sprite>
+    <sprite>sprites\sprTutorial</sprite>
+    <sprite>sprites\sprBlack</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgBlack</background>
@@ -66,6 +72,7 @@
     <font>fonts\ftMagaz</font>
   </fonts>
   <objects name="objects">
+    <object>objects\objColorize</object>
     <object>objects\objPlayer</object>
     <object>objects\objSolid</object>
     <objects name="enemies">
@@ -119,7 +126,6 @@
       <object>objects\objEnProj3</object>
     </objects>
     <object>objects\objBoss</object>
-    <object>objects\objColorize</object>
     <object>objects\objWaveController</object>
     <object>objects\objTempCollision</object>
     <object>objects\objHUD</object>
@@ -127,10 +133,15 @@
     <object>objects\objBigMoneyPack</object>
     <object>objects\objMagaz</object>
     <object>objects\objBg</object>
+    <object>objects\objBossHitbox</object>
+    <object>objects\objBossProj</object>
+    <object>objects\objMenu</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\menu</room>
     <room>rooms\main</room>
     <room>rooms\room2</room>
+    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
