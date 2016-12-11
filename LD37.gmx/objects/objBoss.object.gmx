@@ -40,6 +40,17 @@ part_type_size(part,1.5,2,-.05,0);
 part_type_alpha1(part,0.3);
 
 
+Sname = part_system_create()
+particle1 = part_type_create();
+part_type_shape(particle1,pt_shape_square);
+part_type_size(particle1,0.15,0.25,-0.006,0);
+part_type_speed(particle1,0.75,1.25,0,0);
+part_type_direction(particle1,0,359,0,0);
+part_type_colour1(particle1,objColorize.goodColor);
+part_type_blend(particle1,1);
+part_type_life(particle1,60,60);
+emitter1 = part_emitter_create(Sname);
+
 phase1 = false;
 t =0;
 cutsceneAlpha = 0;
@@ -133,6 +144,7 @@ else
             {
                 instance_create(x+lengthdir_x(500,360/35 * i),y+lengthdir_y(500,360/35 * i), objEnemyBaseTier1);
             }
+            audio_play_sound(sndBossShoot,1,false);
         }
         else if(t == 255)
         {
@@ -140,6 +152,7 @@ else
             {
                 instance_create(x+lengthdir_x(550,360/35 * i),y+lengthdir_y(550,360/35 * i), objEnemyBaseTier2);
             }
+            audio_play_sound(sndBossShoot,1,false);
         }
         else if(t == 435)
         {
@@ -147,6 +160,7 @@ else
             {
                 instance_create(x+lengthdir_x(600,360/35 * i),y+lengthdir_y(600,360/35 * i), objEnemyBaseTier3);
             }
+            audio_play_sound(sndBossShoot,1,false);
         }
         else if(t == 615)
         {
@@ -155,6 +169,7 @@ else
             {
                 instance_create(x+lengthdir_x(650,360/60 * i),y+lengthdir_y(650,360/60 * i), objEnemyBaseTier4);
             }
+            audio_play_sound(sndBossShoot,1,false);
         }
         
         
@@ -182,6 +197,7 @@ else
                         proj.direction = point_direction(x,y,proj.x,proj.y);
                         proj.speed=5;
                     }
+            audio_play_sound(sndBossShoot,1,false);
                 offset1+=5;
                 }
             }
@@ -195,7 +211,8 @@ else
                         proj.image_yscale = 0.5;
                         proj.speed = random_range(2,4);
                         proj.direction = random(360);
-                
+                if(t mod 20 == 0)
+                 audio_play_sound(sndBossShoot,1,false);
             }
             
             
@@ -208,8 +225,8 @@ else
                     proj.image_xscale = 0.5;
                     proj.image_yscale = 0.5;
                     proj.dieOnCol = true;
-                    show_debug_message(string(proj.x) + " " +string(string(proj.y)));
-
+                if(t mod 20 == 0)
+                 audio_play_sound(sndBossShoot,1,false);
             }
             
             
@@ -226,7 +243,14 @@ else
 }
 else
 {
+randX = x+irandom_range(-120,120)
+randY = x+irandom_range(-120,120)
+part_emitter_region(Sname,emitter1,randX,randX,randY,randY,ps_shape_ellipse,1);
+part_emitter_burst(Sname,emitter1,particle1,150);
     //death particles
+    
+    if(t mod 10 == 0)
+        audio_play_sound(sndBossExpl,1,false);
     t++;
 }
 </string>
@@ -296,7 +320,7 @@ if(deathCutscene)
     }
     else
     {
-        if(alphaT &lt; 1)
+        if(alphaT &lt; 1&amp;&amp; room == room2)
             alphaT +=0.04;
             
         if(alphaT &gt;0.99 &amp;&amp; room == room2)
@@ -316,7 +340,7 @@ if(deathCutscene)
             
         if(room == room3 &amp;&amp; alphaT &gt; 0.0)
         {
-            alphaT -= 0.4;
+            alphaT -= 0.04;
         }
         
         if(room == room3 &amp;&amp; alphaT &lt; 0.1)

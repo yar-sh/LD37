@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>color = 0;
 goodColor = make_colour_hsv(0,224,224);
 badColor = make_colour_hsv(127,224,224);
 
@@ -51,7 +51,13 @@ badColor = make_colour_hsv(127,224,224);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>background_blend[0] = make_color_hsv(color_get_hue(goodColor),224,50);
+            <string>if(room == room3)
+{
+    color++;
+goodColor = make_colour_hsv(color,224,224);
+badColor = make_colour_hsv(color,224,224);
+}
+background_blend[0] = make_color_hsv(color_get_hue(goodColor),224,50);
 
 if(instance_exists(objMenu))
 {

@@ -62,11 +62,14 @@ if(instance_place(x,y,objProj2) != noone)
 {
     bul = instance_place(x,y,objProj2);
     if(aceptDamage)
+    {
         hp -= bul.damage;
+    if(!audio_is_playing(sndEnemyShot))
+        audio_play_sound(sndEnemyShot,1,false);
+    }
     with(bul)
         instance_destroy();
     
-        show_debug_message("contact");
 }
 
 if(hp &lt;= 0)

@@ -186,6 +186,8 @@ if(place_meeting(x, y + vspeed, objSolid))
           <argument>
             <kind>1</kind>
             <string>other.hp -=damage;
+if(!audio_is_playing(sndPlayerShot))
+    audio_play_sound(sndPlayerShot,1,false);
 instance_destroy();
 </string>
           </argument>

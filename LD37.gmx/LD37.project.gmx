@@ -4,7 +4,22 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\musBoss</sound>
+    <sound>sound\musWaves</sound>
+    <sound>sound\musEnd</sound>
+    <sound>sound\sndUpgrade</sound>
+    <sound>sound\sndBossExpl</sound>
+    <sound>sound\sndBossShoot</sound>
+    <sound>sound\sndEnemyShoot</sound>
+    <sound>sound\sndEnemyShot</sound>
+    <sound>sound\sndMenu</sound>
+    <sound>sound\sndPickup</sound>
+    <sound>sound\sndPlayerKilled</sound>
+    <sound>sound\sndPlayerShoot</sound>
+    <sound>sound\sndPlayerShot</sound>
+    <sound>sound\sndDeny</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprTempRed</sprite>
     <sprite>sprites\sprTempProjs</sprite>
@@ -61,6 +76,7 @@
     <sprite>sprites\sprMenu</sprite>
     <sprite>sprites\sprTutorial</sprite>
     <sprite>sprites\sprBlack</sprite>
+    <sprite>sprites\sprite45</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgBlack</background>
@@ -70,6 +86,7 @@
   <fonts name="fonts">
     <font>fonts\ftHUD</font>
     <font>fonts\ftMagaz</font>
+    <font>fonts\ftWin</font>
   </fonts>
   <objects name="objects">
     <object>objects\objColorize</object>
@@ -136,6 +153,8 @@
     <object>objects\objBossHitbox</object>
     <object>objects\objBossProj</object>
     <object>objects\objMenu</object>
+    <object>objects\objEnd</object>
+    <object>objects\objMusChanger</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\menu</room>

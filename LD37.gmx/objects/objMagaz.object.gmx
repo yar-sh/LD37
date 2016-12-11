@@ -74,6 +74,7 @@ bounceCost=100;
             {
                 if(objPlayer.bulletTier &lt; 4)
                 {
+                audio_play_sound(sndUpgrade,1,false);
                     objPlayer.money -= bulTierCost;
                     objPlayer.bulletTier++;
                     switch(objPlayer.bulletTier)
@@ -85,7 +86,9 @@ bounceCost=100;
                     }
                     somethingbought = true;
                 }
+                else audio_play_sound(sndDeny,1,false);
             }
+            else audio_play_sound(sndDeny,1,false);
         }
         
         if(keyboard_check_pressed(ord('2'))) //increase moving speed
@@ -94,6 +97,7 @@ bounceCost=100;
             {
                 if(objPlayer.speedUpgrade &lt; 5)
                 {
+                audio_play_sound(sndUpgrade,1,false);
                     objPlayer.money -= speedUpgrCost;
                     objPlayer.speedUpgrade++;
                     switch(objPlayer.speedUpgrade)
@@ -107,7 +111,9 @@ bounceCost=100;
                     }
                     somethingbought = true;
                 }
+                else audio_play_sound(sndDeny,1,false);
             }
+            else audio_play_sound(sndDeny,1,false);
         }
         
         if(keyboard_check_pressed(ord('3'))) //increase fire rate
@@ -116,6 +122,7 @@ bounceCost=100;
             {
                 if(objPlayer.fireSpeedUpgrade &lt; 10)
                 {
+                audio_play_sound(sndUpgrade,1,false);
                     objPlayer.money -= fireRateCost;
                     objPlayer.fireSpeedUpgrade++;
                     switch(objPlayer.fireSpeedUpgrade)
@@ -134,7 +141,9 @@ bounceCost=100;
                     }
                     somethingbought = true;
                 }
+            else audio_play_sound(sndDeny,1,false);
             }
+            else audio_play_sound(sndDeny,1,false);
         }
         
         if(keyboard_check_pressed(ord('4'))) //increase bounciness
@@ -143,6 +152,7 @@ bounceCost=100;
             {
                 if(objPlayer.bulBounceAmount &lt; 7)
                 {
+                audio_play_sound(sndUpgrade,1,false);
                     objPlayer.money -= bounceCost;
                     objPlayer.bulBounceAmount++;
                     switch(objPlayer.bulBounceAmount)
@@ -158,17 +168,21 @@ bounceCost=100;
                     }
                     somethingbought = true;
                 }
+            else audio_play_sound(sndDeny,1,false);
             }
+            else audio_play_sound(sndDeny,1,false);
         }
         
         if(keyboard_check_pressed(ord('5'))) //Heal
         {
             if(objPlayer.money &gt; healCost)
             {
+                audio_play_sound(sndUpgrade,1,false);
                 objPlayer.money -= healCost;
                 objPlayer.hp = objPlayer.maxhp;
                 somethingbought = true;
             }
+            else audio_play_sound(sndDeny,1,false);
         }
     }
     else if(magazShow)

@@ -108,7 +108,8 @@ repeat(irandom_range(6,9))
 if(currentlyFiring)
 {
 bulS=instance_create(x+lengthdir_x(8,image_angle +90),y+lengthdir_y(8,image_angle +90),objEnBullTier3);
-
+    if(!audio_is_playing(sndEnemyShoot) &amp;&amp; room != room2)
+        audio_play_sound(sndEnemyShoot,1,false);
     alarm[0] = bulS.fireSpeed*3
     with(bulS)
         instance_destroy();

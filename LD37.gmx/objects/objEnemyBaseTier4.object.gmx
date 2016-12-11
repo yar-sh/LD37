@@ -107,7 +107,8 @@ instance_create(random_range(x-10,x+10),random_range(y-10,y+10),objMoneyDrop);
             <string>if(instance_exists(objPlayer))
 {
 if(currentlyFiring)
-{
+{    if(!audio_is_playing(sndEnemyShoot) &amp;&amp; room != room2)
+        audio_play_sound(sndEnemyShoot,1,false);
 bulS=instance_create(x,y,objEnBullTier4);
     alarm[0] = bulS.fireSpeed*3
     with(bulS)

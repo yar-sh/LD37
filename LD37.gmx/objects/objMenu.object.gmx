@@ -28,6 +28,7 @@
             <string>startTransition = false;
 
 alphaT = 0;
+played = false;
 </string>
           </argument>
         </arguments>
@@ -84,7 +85,11 @@ draw_sprite_ext(sprTutorial,0,48,48,0.87,0.87,0,objColorize.badColor,1.0);
 
 if(startTransition)
 {
-    
+    if( !played)
+    {
+    played = true;
+        audio_play_sound(sndMenu,1,false);
+    }
 draw_sprite_ext(sprBlack,0,0,0,768,576,0,c_white,alphaT);
 alphaT+=0.01;
 

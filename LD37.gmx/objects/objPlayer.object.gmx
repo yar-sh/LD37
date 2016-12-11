@@ -129,7 +129,8 @@ var bulS;
     bulFireSpeed = bulS.fireSpeed;
     bulFireSpeed -= 1.5 * fireSpeedUpgrade;
     alarm[0] = bulFireSpeed;
-    
+    if(!audio_is_playing(sndPlayerShoot))
+        audio_play_sound(sndPlayerShoot,1,false);
     with(bulS)
         instance_destroy();
     
@@ -376,6 +377,7 @@ if(hp &lt;= 0)
 {
 if(!deathStarted)
 {
+audio_play_sound(sndPlayerKilled,1,false);
 deathStarted = true;
     part_emitter_region(Sname,emitter1,x,x,y,y,ps_shape_ellipse,1);
     part_emitter_burst(Sname,emitter1,particle1,150);

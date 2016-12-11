@@ -106,6 +106,7 @@
     <instance objName="objColorize" x="-48" y="-48" name="inst_240AFD76" locked="0" code="if(instance_number(objColorize) &gt; 1)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlayer" x="48" y="48" name="inst_47A173B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMenu" x="528" y="384" name="inst_474586D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMusChanger" x="0" y="-48" name="inst_52DB494B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="&lt;undefined&gt;" x="384" y="0" w="48" h="48" xo="0" yo="0" id="10000013" name="inst_CACC6FF0" depth="5000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
