@@ -1,2 +1,5 @@
+1.0.2
+Death on transition to boss resulted in blocking inputs and despawning player properly
+
 1.0.1
 objColorize did not reset colors when player died on waves

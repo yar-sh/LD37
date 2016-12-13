@@ -129,8 +129,11 @@ if(freeze)
     part_type_direction(part,_part_dir,_part_dir,0,0);
     part_particles_create(system,_x,_y,part,1);
 }
-else
+else if(instance_exists(objPlayer))
 {
+    if(room == menu || objPlayer.deathStarted || objPlayer.transToBegin)
+        instance_destroy();
+        
     if(obstaclesRemoved)
     {
         if(!instance_exists(objBossHitbox))
